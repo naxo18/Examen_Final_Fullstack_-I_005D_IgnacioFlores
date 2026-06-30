@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: itinerario
+
+  datasource:
+    url: jdbc:mysql://localhost:3313/itinerary
+    username: examen
+    password: examen123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: 9003
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+# URLs de los microservicios a consumir
+services:
+  login:
+    url: http://localhost:9000
+  traveler:
+    url: http://localhost:9002
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
